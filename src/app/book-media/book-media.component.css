@@ -1,0 +1,10 @@
+.gallery{
+    background-image: url('https://media.istockphoto.com/id/1362343364/photo/3d-abstract-background-with-neon-lights-neon-tunnel-space-construction-3d-illustration3.webp?s=170667a&w=0&k=20&c=tGuRtSbc2TH_lC4T2x9Eo6BV6fG2-mIZhn35YgiszQo=');
+    background-position: center;
+    background-size: cover;
+    color: #fff;
+}
+.container{
+    padding: 30px 0;
+    /* gap: 20px; */
+}

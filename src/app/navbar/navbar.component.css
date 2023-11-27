@@ -1,0 +1,37 @@
+
+.navbar{
+    z-index: 100;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.521);
+}
+.container-fluid{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: transparent;
+    /* z-index: 100; */
+}
+.navbar-brand{
+    font-size: 20px;
+    color: #fff;
+    font-weight: 600;
+}
+.navbar-toggler{
+    color: #fff;
+    border: 3px solid #fff;
+}
+.navbar-toggler-icon{
+    color: #fff;
+    /* border-color: #fff;
+    background-color: #fff; */
+}
+/* #offcanvasResponsive{
+    color: #fff;
+    border: 3px solid #fff;
+} */
+.navbar-nav .nav-link{
+    font-size: 15px;
+    color: #fff;
+    font-weight: 400;
+}
+
+

@@ -1,0 +1,30 @@
+.main{
+    height: 25vh;
+    background-color: rgba(72,0,72,0.6);
+    text-align: center;
+   
+}
+h2{
+    padding-top: 20px;
+}
+.search{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+}
+.form-select{
+    width: 20%;
+
+}
+.form-control{
+    width: 20%;
+}
+.gallery{
+    background-color: whitesmoke;
+    padding: 50px 0;
+}
+img{
+    width: 20%;
+}

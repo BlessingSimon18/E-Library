@@ -1,14 +1,43 @@
+.main{
+    max-width: 100%;
+    background-image: linear-gradient(rgba(72,0,72,0.6), rgba(192,72,72,0.8)),
+    linear-gradient(rgba(72,0,72,0.6), rgba(192,72,72,0.8));
+    background-position: center;
+    background-blend-mode: multiply;
+    height: 100vh;
+}
+.container{
+  width: 70%;
+  margin: 70px auto;
+  display: flex;
+  height: 70vh;
+  
+}
+.image{
+    width: 50%;
+    object-fit: fill;
+    background-image: url(../../../assets/register7);
+    background-size: cover;
+    object-fit: fill;
+    background-position: center;
+    border-radius: 20px 0 0 20px;
+}
+
+.row{
+    width: 60%;
+}
 .login-box {
-    margin-top: 75px;
-    height: auto;
+    width: 100%;
+    border-radius: 0 20px 20px 0;
+    height: 70vh;
     background: #1A2226;
     text-align: center;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
-
-img{
-    padding-top: 10px;
+.login-box img{
+    padding-top: 50px;
 }
+
 .login-title {
     margin-top: 15px;
     text-align: center;
@@ -113,4 +142,28 @@ label {
 
 .loginbttm {
     padding: 0px;
+}
+
+
+
+/* RESPONSIVENESS */
+@media screen and (max-width: 525px) {
+    .image{
+        display: none;
+    }
+    .main{
+        background-image: linear-gradient(rgba(72,0,72,0.6), rgba(192,72,72,0.8)),
+    linear-gradient(rgba(72,0,72,0.6), rgba(192,72,72,0.8)),
+    url(../../../assets/register7);
+    background-position: center;
+    background-size: cover;
+    background-blend-mode: multiply;
+    }
+    .row{
+        width: 100%;
+    }
+    .login-box{
+        border-radius: 20px;
+    }
+    
 }

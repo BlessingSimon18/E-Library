@@ -13,8 +13,16 @@ import { BlogComponent } from './blog/blog.component';
 import { AboutComponent } from './about/about.component';
 import { AdminLoginComponent } from './pages/admin-login/admin-login.component';
 import { UserLoginComponent } from './pages/user-login/user-login.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './pages/register/register.component';
+
+import { UserDashboardComponent } from './pages/user-dashboard/user-dashboard.component';
+import { UserListComponent } from './pages/user-list/user-list.component';
+import { RolesComponent } from './pages/roles/roles.component';
+import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard.component';
+import { AddUserComponent } from './pages/add-user/add-user.component';
+import { AdminLayoutComponent } from './pages/admin-layout/admin-layout.component';
+import { UserLayoutComponent } from './pages/user-layout/user-layout.component';
 
 @NgModule({
   declarations: [
@@ -29,13 +37,22 @@ import { RegisterComponent } from './pages/register/register.component';
     AboutComponent,
     AdminLoginComponent,
     UserLoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    AdminDashboardComponent,
+    AddUserComponent,
+    AdminLayoutComponent,
+    UserLayoutComponent,
+    UserDashboardComponent,
+    UserListComponent,
+    RolesComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
+  // schemas:[ CUSTOM_ELEMENTS_SCHEMA ],
   providers: [],
   bootstrap: [AppComponent]
 })

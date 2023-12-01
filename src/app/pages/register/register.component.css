@@ -1,12 +1,48 @@
+.main{
+    max-width: 100%;
+    background-image: linear-gradient(rgba(72,0,72,0.6), rgba(192,72,72,0.8)),
+    linear-gradient(rgba(72,0,72,0.6), rgba(192,72,72,0.8)), url(../../../assets/register.jpg);
+    background-position: center;
+    background-size: cover;
+    background-blend-mode: multiply;
+    background-attachment: fixed;
+    /* height: 100%; */
+    /* position: relative; */
+    /* height: fit-content; */
+}
+.container{
+    width: 100%;
+    margin: 70px auto;
+    display: flex;
+    /* position: sticky; */
+    /* top: 0; */
+}
+.image{
+    width: 50%;
+    object-fit: fill;
+    background-image: url(../../../assets/register7);
+    background-size: cover;
+    object-fit: fill;
+    background-position: center;
+    border-radius: 20px 0 0 20px;
+    margin-bottom: 20px;
+}
+.row{
+    width: 60%;
+}
 .login-box {
-    margin-top: 75px;
+    width: 100%;
+    border-radius: 0 20px 20px 0;
     height: auto;
-    background: #1A2226;
+    background: rgba(28, 35, 38);
     text-align: center;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    z-index: 10;
+    border: 1px solid rgba(221, 21, 221, 0.6);
+    margin-bottom: 20px;
 }
 .login-key{
-    padding-top: 10px;
+    padding-top: 20px;
 }
 img{
     /* padding-top: 10px; */
@@ -27,7 +63,7 @@ img{
     text-align: left;
 }
 
-input[type=text] {
+input {
     background-color: #1A2226;
     border: none;
     border-bottom: 2px solid rgba(221, 21, 221, 0.6);
@@ -79,7 +115,8 @@ label {
 
 .form-control-label {
     font-size: 10px;
-    color: #6C6C6C;
+    /* color: #6C6C6C; */
+    color: #fff;
     font-weight: bold;
     letter-spacing: 1px;
 }

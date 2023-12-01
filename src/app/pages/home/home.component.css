@@ -29,10 +29,9 @@ button{
 .span{
     height: 100vh;
     width: 100%;
-    /* text-align: center; */
     padding-top: 100px;
     color: white;
-    /* z-index: 100; */
+    
     position: absolute;
     top: 0;
     background: linear-gradient(rgba(72,0,72,0.6), rgba(192,72,72,0.8));

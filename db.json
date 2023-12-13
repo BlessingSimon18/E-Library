@@ -1,0 +1,76 @@
+{
+  "users": [
+    {
+      "userName": "librarian",
+      "email": "library@gmail.com",
+      "password": "librarian",
+      "confirmPassword": "librarian",
+      "mobile": "09098989988",
+      "dept": "library",
+      "faculty": "library",
+      "role": "Librarian",
+      "isactive": true,
+      "id": 1
+    },
+    {
+      "userName": "beauty",
+      "email": "beauty@gmail.com",
+      "password": "beautiful",
+      "confirmPassword": "beautiful",
+      "mobile": "09098989988",
+      "dept": "beauty",
+      "faculty": "beauty",
+      "role": "",
+      "isactive": false,
+      "id": 2
+    },
+    {
+      "userName": "joke",
+      "email": "joke@gmail.com",
+      "password": "jokester",
+      "confirmPassword": "jokester",
+      "mobile": "09098989988",
+      "dept": "joke",
+      "faculty": "joke",
+      "role": "",
+      "isactive": false,
+      "id": 3
+    },
+    {
+      "userName": "Tobi",
+      "email": "tobi@gmail.com",
+      "password": "tobiloba",
+      "confirmPassword": "tobiloba",
+      "mobile": "09098989988",
+      "dept": "Toys",
+      "faculty": "Toys",
+      "role": "",
+      "isactive": false,
+      "id": 4
+    },
+    {
+      "userName": "love",
+      "email": "love@gmail.com",
+      "password": "lovestruck",
+      "confirmPassword": "lovestruck",
+      "mobile": "09098989988",
+      "dept": "love",
+      "faculty": "love",
+      "role": null,
+      "isactive": null,
+      "id": 5
+    },
+    {
+      "userName": "Sugar",
+      "email": "sugar@gmail.com",
+      "password": "sweetness",
+      "confirmPassword": "sweetness",
+      "mobile": "09098989988",
+      "dept": "Sweetness",
+      "faculty": "Sweetness",
+      "role": "",
+      "isactive": false,
+      "id": 6
+    }
+  ]
+}

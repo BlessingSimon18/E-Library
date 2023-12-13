@@ -21,7 +21,12 @@ export class AdminLoginComponent implements OnInit {
 
   onLogin(){
     if(this.loginObj.userName == 'librarian' && this.loginObj.password == 'librarian'){
-      this.router.navigateByUrl('adminLayout')
+      // sessionStorage.setItem('username', this.loginObj.userName);
+      // sessionStorage.setItem('userrole', this.loginObj.role);
+      this.router.navigateByUrl('adminLayout');
+    }else{
+      alert("You shouldn't try to breach protocols😏");
+      this.router.navigate(['userlog']);
     }
   }
 }

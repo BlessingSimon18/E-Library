@@ -23,6 +23,14 @@ import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard
 import { AddUserComponent } from './pages/add-user/add-user.component';
 import { AdminLayoutComponent } from './pages/admin-layout/admin-layout.component';
 import { UserLayoutComponent } from './pages/user-layout/user-layout.component';
+import { UserServiceService } from './Services/user-service.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './Modules/material.module';
+import { HttpClientModule } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
+import { PagesComponent } from './updatePopup/pages/pages.component';
+import { CommonModule } from '@angular/common';
+import { UpdatePopupComponent } from './pages/update-popup/update-popup.component';
 
 @NgModule({
   declarations: [
@@ -44,16 +52,25 @@ import { UserLayoutComponent } from './pages/user-layout/user-layout.component';
     UserLayoutComponent,
     UserDashboardComponent,
     UserListComponent,
-    RolesComponent
+    RolesComponent,
+    PagesComponent,
+    UpdatePopupComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    MaterialModule,
+    HttpClientModule,
+    CommonModule,
+    ToastrModule.forRoot()
   ],
   // schemas:[ CUSTOM_ELEMENTS_SCHEMA ],
-  providers: [],
+  providers: [
+    UserServiceService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

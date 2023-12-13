@@ -18,6 +18,8 @@ import { AdminLayoutComponent } from './pages/admin-layout/admin-layout.componen
 import { UserDashboardComponent } from './pages/user-dashboard/user-dashboard.component';
 import { UserLayoutComponent } from './pages/user-layout/user-layout.component';
 import { UserListComponent } from './pages/user-list/user-list.component';
+import { authGuard } from './guard/auth.guard';
+import { UpdatePopupComponent } from './pages/update-popup/update-popup.component';
 
 const routes: Routes = [
   {path:"", component:HomeComponent},
@@ -27,22 +29,23 @@ const routes: Routes = [
   {path:"news", component:NewsComponent},
   {path:"about", component:AboutComponent},
   {path:"book", component:BookMediaComponent},
-  {path:"adminlog", component:AdminLoginComponent,
+  {path:"adminlog", component:AdminLoginComponent},
+  {path:'adminLayout', component:AdminLayoutComponent, canActivate:[authGuard],
   children:[
     {path:'addUser', component:AddUserComponent},
     {path:'role', component:RolesComponent},
     {path:'adminDash', component:AdminDashboardComponent},
-    {path:'adminLayout', component:AdminLayoutComponent}
   ]
   },
   {path:"register", component:RegisterComponent},
-  {path:"userlog", component:UserLoginComponent,
+  {path:"userlog", component:UserLoginComponent},
+  {path:'userLayout', component:UserLayoutComponent, canActivate:[authGuard],
   children:[
-    {path:'userDash', component:UserDashboardComponent},
-    {path:'userLayout', component:UserLayoutComponent},
-    {path:'userList', component:UserListComponent}
+    {path:'userDash', component:UserDashboardComponent, canActivate:[authGuard]},
+    {path:'userList', component:UserListComponent, canActivate:[authGuard]}
   ]
-  }
+  },
+  {path:'popup', component:UpdatePopupComponent}
 ];
 
 @NgModule({

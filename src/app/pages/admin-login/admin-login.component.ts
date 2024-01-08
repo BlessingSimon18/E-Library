@@ -20,10 +20,12 @@ export class AdminLoginComponent implements OnInit {
   }
 
   onLogin(){
+    console.log(this.loginObj);
+    
     if(this.loginObj.userName == 'librarian' && this.loginObj.password == 'librarian'){
-      // sessionStorage.setItem('username', this.loginObj.userName);
+      sessionStorage.setItem('username', this.loginObj.userName);
       // sessionStorage.setItem('userrole', this.loginObj.role);
-      this.router.navigateByUrl('adminLayout');
+      this.router.navigateByUrl('/adminLayout');
     }else{
       alert("You shouldn't try to breach protocols😏");
       this.router.navigate(['userlog']);

@@ -1,1 +1,82 @@
-<p>roles works!</p>
+<div class="container">
+  <h1>File Reader</h1>
+  <p>Select a text file to read:</p>
+  <label for="file-input" class="custom-file-upload">
+      <input type="file" id="file-input" accept=".txt,.md,.html,.css,.js,.epub" 
+      (change)="onFileChange($event)"/>
+      <i class="fas fa-cloud-upload-alt"></i> Choose File
+  </label>
+  
+  <div>
+      <label for="file-input">Select files:</label>
+      <input type="file" id="file-input" (change)="onFileChange($event)" multiple>
+  </div>
+    
+    <!-- <div *ngFor="let fileItem of fileItems; let i = index">
+      <div>
+        <p id="file-name">{{ fileItem.name }}</p>
+        <ng-container *ngIf="fileItem.type && fileItem.type.startsWith('text/')">
+          <pre id="file-content">{{ fileItem.content }}</pre>
+        </ng-container>
+        <ng-container *ngIf="fileItem.type && fileItem.type.startsWith('image/')">
+          <img [src]="fileItem.content " alt="Image Preview" />
+        </ng-container>
+        <ng-container *ngIf="fileItem.type && fileItem.type.startsWith('video/')">
+          <video width="320" height="240" controls>
+            <source [src]="fileItem.content" type="{{ fileItem.type }}">
+            Your browser does not support the video tag.
+          </video>
+        </ng-container>
+        <ng-container *ngIf="fileItem.type && fileItem.type === 'application/pdf'">
+          <ngx-extended-pdf-viewer src="fileItem.content as string">You can <a [href]="fileItem.content " target="_blank">download</a> the PDF</ngx-extended-pdf-viewer>
+          <object [data]="fileItem.content" type="{{ fileItem.type }}" width="100%" height="500px">
+              PDF viewer not available. You can <a routerLink="fileItem.content" target="_blank">download</a> the PDF.
+          </object>
+        </ng-container>
+
+        <button (click)="deleteFile(i)">Delete</button>
+      </div>
+    </div> -->
+</div>
+
+
+
+<!-- Add this table to display files -->
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<ng-container matColumnDef="icon">
+  <th mat-header-cell *matHeaderCellDef>Icon</th>
+  <td mat-cell *matCellDef="let element">
+    <mat-icon>{{ getFileIcon(element.type) }}</mat-icon>
+  </td>
+</ng-container>
+
+<ng-container matColumnDef="name">
+  <th mat-header-cell *matHeaderCellDef>Name</th>
+  <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+</ng-container>
+
+<ng-container matColumnDef="type">
+  <th mat-header-cell *matHeaderCellDef>Type</th>
+  <td mat-cell *matCellDef="let element">{{ element.type }}</td>
+</ng-container>
+
+<ng-container matColumnDef="actions">
+  <th mat-header-cell *matHeaderCellDef>Actions</th>
+  <td mat-cell *matCellDef="let element">
+    <button mat-icon-button (click)="openFileContentDialog(element)">
+      <mat-icon>visibility</mat-icon>
+    </button>
+    <button mat-icon-button (click)="deleteFile(element.id)">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </td>
+</ng-container>
+
+<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+<!-- Add this paginator to enable pagination -->
+<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+
+

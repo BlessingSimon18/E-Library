@@ -1,0 +1,10 @@
+<div *ngIf="bookDetails">
+    <img *ngIf="bookDetails.cover_i" [src]="'http://covers.openlibrary.org/b/id/' + bookDetails.cover_i + '-L.jpg'" alt="Book Cover">
+    <h2>{{ bookDetails.title }}</h2>
+    <p>Author: {{ bookDetails.author_name ? bookDetails.author_name.join(', ') : 'N/A' }}</p>
+    <p>Type: {{ bookDetails.type ? bookDetails.type.join(', ') : 'N/A' }}</p>
+    <p>Summary: {{ bookDetails.summary ? bookDetails.summary.value : 'N/A' }}</p>
+    <p>Description: {{ bookDetails.description ? bookDetails.description.value : 'N/A' }}</p>
+    <!-- Add more book details as needed -->
+  </div>
+  

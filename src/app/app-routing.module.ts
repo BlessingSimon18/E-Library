@@ -20,6 +20,11 @@ import { UserLayoutComponent } from './pages/user-layout/user-layout.component';
 import { UserListComponent } from './pages/user-list/user-list.component';
 import { authGuard } from './guard/auth.guard';
 import { UpdatePopupComponent } from './pages/update-popup/update-popup.component';
+import { BookDetailsComponent } from './book-details/book-details.component';
+import { AudioComponent } from './file-library/audio/audio.component';
+import { VideoComponent } from './file-library/video/video.component';
+import { PdfComponent } from './file-library/pdf/pdf.component';
+import { PicturesComponent } from './file-library/pictures/pictures.component';
 
 const routes: Routes = [
   {path:"", component:HomeComponent},
@@ -42,10 +47,15 @@ const routes: Routes = [
   {path:'userLayout', component:UserLayoutComponent, canActivate:[authGuard],
   children:[
     {path:'userDash', component:UserDashboardComponent, canActivate:[authGuard]},
-    {path:'userList', component:UserListComponent, canActivate:[authGuard]}
+    {path:'userList', component:UserListComponent, canActivate:[authGuard]},
+    {path:'book/:id', component:BookDetailsComponent}
   ]
   },
-  {path:'popup', component:UpdatePopupComponent}
+  {path:'popup', component:UpdatePopupComponent},
+  {path:'audio', component:AudioComponent},
+  {path:'video', component:VideoComponent},
+  {path:'pdf', component:PdfComponent},
+  {path:'picture', component:PicturesComponent},
 ];
 
 @NgModule({

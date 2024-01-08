@@ -1,1 +1,93 @@
-<p>admin-dashboard works!</p>
+
+<!-- admin-upload.component.html -->
+<!-- <ngx-dropzone (change)="onFileAdded($event)"></ngx-dropzone> -->
+<!-- admin-upload.component.html -->
+<!-- <div>
+    <input type="file" id="fileInput">
+    <button (click)="onFileAdded('video')">Upload Video</button>
+    <button (click)="onFileAdded('picture')">Upload Picture</button>
+    <button (click)="onFileAdded('pdf')">Upload PDF</button>
+    <button (click)="onFileAdded('audio')">Upload Audio</button>
+  
+    <div>
+      <h3>Uploaded Videos</h3>
+      <app-video [videoUrl]="video"></app-video>
+    </div>
+    <div>
+      <h3>Uploaded Videos</h3>
+      <app-pictures [imageUrl]="picture"></app-pictures>
+    </div> -->
+
+    <!-- <div *ngFor="let picture of userService.getPictures()">
+        <h3>Uploaded Pictures</h3>
+        <app-picture [imageUrl]="picture"></app-picture>
+      </div>
+    
+      <div *ngFor="let pdf of userService.getPdfs()">
+        <h3>Uploaded PDFs</h3>
+        <app-pdf [pdfUrl]="pdf"></app-pdf>
+      </div>
+    
+      <div *ngFor="let audio of userService.getAudios()">
+        <h3>Uploaded Audios</h3>
+        <app-audio [audioUrl]="audio"></app-audio>
+      </div> -->
+  <!-- </div> -->
+  
+<div class="body">
+  <div class="main">
+    <h2>Add Multimedia Content</h2>
+    <label>Type:</label>
+    <select [(ngModel)]="type">
+      <option value="file">Picture</option>
+      <option value="file">Video</option>
+      <option value="file">Audio</option>
+      <option value="file">PDF</option>
+      <option value="content">Text</option>
+    </select>
+    <br>
+    <br>
+
+    <textarea name="" id="" cols="30" rows="10" minlength="1000" *ngIf="type==='content'"></textarea>
+    <label>File:</label>
+    <input *ngIf="type==='file'" type="file" (change)="onFileChange($event)">
+    <br>
+  </div>
+  <div class="button">
+    <div *ngIf="content.preview !== ''">
+      <label>Preview:</label>
+      <!-- Display preview based on file type -->
+      <div *ngIf="content.type === 'picture'">
+        <img [src]="content.preview" alt="File Preview">
+      </div>
+      <div *ngIf="content.type === 'video'">
+        <video [src]="content.preview" width="600" height="400" controls></video>
+      </div>
+      <div *ngIf="content.type === 'audio'">
+        <audio [src]="content.preview" controls></audio>
+      </div>
+      <div *ngIf="content.type === 'pdf'">
+        <iframe [src]="content.preview" width="600" height="400"></iframe>
+      </div>
+      <div *ngIf="content.type === 'text'">
+        <pre>{{ content.preview }}</pre>
+      </div>
+    </div>
+    <br>
+
+        <!-- <label>URL:</label>
+        <input type="text" [(ngModel)]="content.url">
+        <br> -->
+    <button (click)="addContent()">Add Content</button>
+  </div>
+  <br>
+  <br>
+  <div>
+    <h2>Available Multimedia Content</h2>
+    <div *ngFor="let content of multimediaContent">
+      <div *ngIf="content.type === 'picture'">
+        <img [src]="content.file" alt="Picture">
+      </div>
+    </div>
+  </div>
+</div>

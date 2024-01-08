@@ -1,85 +1,25 @@
-<body>
-    <!-- <app-navbar></app-navbar> -->
-    <div class="image">
-        <img src="" alt="">
-    
-        <div class="main">
-            <input type="checkbox" id="chk" aria-hidden="true">
-            
-                <div class="signup">
-                    <form [formGroup]="registerationForm">
-                        <label for="chk" aria-hidden="true" class="sign">Sign up</label>
-                        <div class="row">
-                        <div class="row1">
-                        <div class="cont">
-                            <h3 class="title">USERNAME:</h3>
-                        <input type="text" name="txt" placeholder="User name" formControlName="userName">
-                        </div>
-
-                        <div class="cont">
-                            <h3 class="title">EMAIL:</h3>
-                            <input type="email" class="form-control" name="email" id="email"
-                                    formControlName="email">
-                                    <span style="color:red;" 
-                                    *ngIf="email.invalid && (email.dirty ||
-                                    email.touched)">
-                                    <div *ngIf="email.errors?.['required']">Email is required</div>
-                                    <div *ngIf="email.errors?.['email']">Email must be valid</div>
-                                    </span>
-                        </div>
-
-                        <div class="cont">
-                            <h3 class="title">MOBILE:</h3>
-                        <input type="text" class="form-control" name="mobile" id="mobile"
-                        formControlName="mobile">
-                        </div>
-
-                        <div class="cont">
-                            <h3 class="title">DEPARTMENT:</h3>
-                        <input type="text"  class="form-control" name="dept" id="dept"
-                        formControlName="dept">
-                        </div>
-                    </div>
-
-                    <div class="row2">
-                        <div class="cont">
-                            <h3 class="title">FACULTY:</h3>
-                        <input type="text" class="form-control" name="faculty" id="faculty"
-                        formControlName="faculty">
-                        </div>
-
-                        <div class="cont">
-                            <h3 class="title">PASSWORD:</h3>
-                        <input type="password" class="form-control" name="password" id="password"
-                                formControlName="password">
-                                <span style="color:red;" 
-                                *ngIf="password.invalid && (password.dirty ||
-                                password.touched)">
-                                <div *ngIf="password.errors?.['required']">Password of min-length of 8 is required</div>
-                                </span>
-                        </div>
-
-                        <div class="cont">
-                            <h3 class="title">CONFIRM PASSWORD:</h3>
-                        <input type="password" class="form-control" name="confirmPassword" id="con"
-                        formControlName="confirmPassword">
-                            <span style="color:red;" 
-                                *ngIf="confirmPassword.invalid && (confirmPassword.dirty ||
-                                confirmPassword.touched)">
-                                <div *ngIf="confirmPassword.errors?.['required']">Confirm the Password</div>
-                                </span>
-                                <span style="color:red;" 
-                                *ngIf="registerationForm.errors?.['passwordMismatch'] && confirmPassword.valid &&
-                                password.valid">
-                                Password should match
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                        
-                        <button [disabled]="!registerationForm.valid" (click)="updateUser()">Sign up</button>
-                    </form>
-                </div>
+<mat-card>
+    <mat-card-header>
+        <h1>Update User</h1>
+    </mat-card-header>
+    <mat-card-content>
+        <form class="example-form" [formGroup]="registerationForm" (ngSubmit)="updateUser()">
+            <mat-form-field class="example-full-width">
+                <mat-label>Role</mat-label>
+                <mat-select formControlName="role">
+                    <mat-option value="">Select Role</mat-option>
+                    <mat-option *ngFor="let item of rolelist" [value]="item.code">
+                        {{item.name}}
+                    </mat-option>
+                  </mat-select>
+            </mat-form-field> 
+            <div>
+                <mat-checkbox formControlName="isactive" class="example-margin">Is Active</mat-checkbox>
             </div>
-        </div>
-</body>
+            <div>
+                <button mat-raised-button color="primary">Update</button>
+                <a mat-dialog-close mat-raised-button color="accent">Close</a>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>

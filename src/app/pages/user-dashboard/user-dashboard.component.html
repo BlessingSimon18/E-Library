@@ -1,1 +1,29 @@
-<p>user-dashboard works!</p>
+<!-- user-access.component.html -->
+<!-- <div *ngFor="let file of files">
+  {{ file.name }}
+</div> -->
+  
+<!-- <div>
+  <h3>{{ title }}</h3>
+  <div *ngFor="let file of files">
+    {{ file.name }}
+  </div>
+</div> -->
+
+<div>
+  <h2>Available Multimedia Content</h2>
+  <div *ngFor="let content of multimediaContent">
+    <div *ngIf="content.type === 'picture'">
+      <img [src]="content.file" alt="Picture">
+    </div>
+    <div *ngIf="content.type === 'video'">
+      <video [src]="content.file" controls></video>
+    </div>
+    <div *ngIf="content.type === 'audio'">
+      <audio [src]="content.file" controls></audio>
+    </div>
+    <div *ngIf="content.type === 'pdf'">
+      <a [href]="content.file" target="_blank">Download PDF</a>
+    </div>
+  </div>
+</div>

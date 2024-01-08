@@ -28,9 +28,18 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './Modules/material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
-import { PagesComponent } from './updatePopup/pages/pages.component';
 import { CommonModule } from '@angular/common';
 import { UpdatePopupComponent } from './pages/update-popup/update-popup.component';
+import { BookDetailsComponent } from './book-details/book-details.component';
+import { VideoComponent } from './file-library/video/video.component';
+import { PicturesComponent } from './file-library/pictures/pictures.component';
+import { AudioComponent } from './file-library/audio/audio.component';
+import { PdfComponent } from './file-library/pdf/pdf.component';
+import { FileContentDialogComponent } from './file-content-dialog/file-content-dialog.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatDialogModule } from '@angular/material/dialog';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -53,8 +62,14 @@ import { UpdatePopupComponent } from './pages/update-popup/update-popup.componen
     UserDashboardComponent,
     UserListComponent,
     RolesComponent,
-    PagesComponent,
-    UpdatePopupComponent
+    // PagesComponent,
+    UpdatePopupComponent,
+    BookDetailsComponent,
+    VideoComponent,
+    PicturesComponent,
+    AudioComponent,
+    PdfComponent,
+    FileContentDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -63,6 +78,10 @@ import { UpdatePopupComponent } from './pages/update-popup/update-popup.componen
     FormsModule,
     BrowserAnimationsModule,
     MaterialModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatDialogModule,
+    MatIconModule,
     HttpClientModule,
     CommonModule,
     ToastrModule.forRoot()

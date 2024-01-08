@@ -1,0 +1,42 @@
+<div class="main">
+    <div class="search-container">
+        <form [formGroup]="searchForm" (ngSubmit)="search()">
+        <label for="word">Search:</label>
+        <input type="text" id="word" formControlName="word">
+        <button type="submit">Search</button>
+        </form>
+    
+        <div *ngFor="let book of searchResults" class="result-card" (click)="navigateToBookDetail(book.key)">
+            
+                <div>
+                    <img *ngIf="book.cover_i" [src]="'http://covers.openlibrary.org/b/id/' + book.cover_i + '-L.jpg'" alt="Book Cover" style="width: 40px;">
+                    <h3>{{ book.title }}</h3>
+                    <p>Author: {{ book.author_name ? book.author_name.join(', ') : 'N/A' }}</p>
+                    <!-- <p>About: {{ book.description ? book.description.value : 'Check description' }}</p> -->
+                    <p>About: {{ book.first_sentence }}</p>
+                    <p>About: {{ book.first_sentence.has_fulltext }}</p> -->
+                    <!-- Add more book details as needed -->
+                </div>
+            
+        </div>
+    </div>
+
+
+    <div>
+        <h2>Available Multimedia Content</h2>
+        <div *ngFor="let content of multimediaContent">
+          <div *ngIf="content.type === 'picture'">
+            <img [src]="content.url" alt="Picture">
+          </div>
+          <div *ngIf="content.type === 'video'">
+            <video [src]="content.url" controls></video>
+          </div>
+          <div *ngIf="content.type === 'audio'">
+            <audio [src]="content.url" controls></audio>
+          </div>
+          <div *ngIf="content.type === 'pdf'">
+            <a [href]="content.url" download="file.pdf">Download PDF</a>
+          </div>
+        </div>
+      </div>
+</div> 

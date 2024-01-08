@@ -22,7 +22,7 @@
       <!-- Role Column -->
       <ng-container matColumnDef="role">
         <th mat-header-cell mat-sort-header *matHeaderCellDef> Role </th>
-        <td mat-cell *matCellDef="let element"> {{element.role===''?'UnAssigned' : element.role}} </td>
+        <td mat-cell *matCellDef="let element"> {{ element.role===""?'UnAssigned' : element.role }} </td>
       </ng-container>
   
       <!-- Status Column -->
@@ -35,7 +35,7 @@
       <ng-container matColumnDef="action">
         <th mat-header-cell mat-sort-header *matHeaderCellDef> Action </th>
         <td mat-cell *matCellDef="let element"> 
-            <a (click)="updateUser(element.userName)" mat-raised-button color="primary">Update</a>
+            <a *ngIf="element.role!='librarian'" (click)="updateUser(element.id)" mat-raised-button color="primary">Update</a>
          </td>
       </ng-container>
   

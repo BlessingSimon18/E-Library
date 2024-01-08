@@ -1,0 +1,43 @@
+<!-- file-content-dialog.component.html -->
+
+<div class="dialog-content">
+  <h2 class="dialog-title">File Content</h2>
+
+  <div>
+    <p>File Type: {{ data.fileType }}</p>
+    <p>Content: {{ data.content }}</p>
+  </div>
+
+  <!-- Text content -->
+  <div *ngIf="isTextType(data.fileType)">
+    <pre class="dialog-content-text">{{ data.content }}</pre>
+  </div>
+
+  <!-- Image content -->
+  <div *ngIf="isImageType(data.fileType)">
+    <img class="dialog-content-image" [src]="data.content" alt="Image">
+  </div>
+
+  <!-- Video content -->
+  <div *ngIf="isVideoType(data.fileType)">
+    <video class="dialog-content-video" controls>
+      <source [src]="data.content" type="{{ data.fileType }}">
+    </video>
+  </div>
+
+  <!-- Audio content -->
+  <div *ngIf="isAudioType(data.fileType)">
+    <audio class="dialog-content-audio" controls>
+      <source [src]="data.content" type="{{ data.fileType }}">
+    </audio>
+  </div>
+
+  <!-- PDF content -->
+  <div *ngIf="isPdfType(data.fileType)">
+    <iframe class="dialog-content-pdf" [src]="data.content" frameborder="0" width="100%" height="600px"></iframe>
+  </div>
+
+  <div class="dialog-footer">
+    <button mat-button mat-dialog-close>Close</button>
+  </div>
+</div>

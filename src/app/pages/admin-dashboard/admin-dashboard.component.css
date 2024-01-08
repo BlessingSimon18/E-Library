@@ -1,0 +1,23 @@
+.body{
+    max-width: 100%;
+    background-image: linear-gradient(rgba(72,0,72,0.6), rgba(192,72,72,0.8)),
+    linear-gradient(rgba(72,0,72,0.6), rgba(192,72,72,0.8));
+    background-position: center;
+    background-blend-mode: multiply;
+    height: 100vh;
+    color:aliceblue;
+}
+
+.main{
+    /* display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; */
+    margin: auto;
+    width: 70%;
+    gap: 20px;
+}
+.button{
+    margin: auto;
+    width: 70%;
+}

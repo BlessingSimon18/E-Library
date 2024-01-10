@@ -22,8 +22,17 @@
     </div>
   </div>
 
+    <!-- Display messages -->
   <div *ngFor="let messageItem of messageItems">
     <p>{{ messageItem.content }}</p>
     <small>Posted by User {{ messageItem.userId }} on {{ messageItem.created_at }}</small>
   </div>
+
+   <!-- Post new message -->
+  <div>
+    <label for="message-input">Write a message:</label>
+    <textarea id="message-input" [(ngModel)]="newMessageContent" placeholder="Type your message..."></textarea>
+    <button (click)="postMessage(newMessageContent)">Post Message</button>
+  </div>
+  
 </div>

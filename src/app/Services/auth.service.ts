@@ -44,7 +44,7 @@ export class AuthService {
     return sessionStorage.getItem('userrole')!=null?sessionStorage.getItem('userrole')?.toString():'';
   }
 
-  uploadFile(file: File): Observable<any> {
+  uploadFile(file: File): Observable<any[]> {
     const formData: FormData = new FormData();
     formData.append('file', file, file.name);
     formData.append('file', file, file.type);
@@ -83,4 +83,5 @@ export class AuthService {
     const deleteUrl = `${this.messageUrl}/${id}`;
     return this.http.delete<any>(deleteUrl);
   }
+  
 }

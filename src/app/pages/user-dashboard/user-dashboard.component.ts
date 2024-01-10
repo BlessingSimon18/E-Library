@@ -7,16 +7,12 @@ import { AuthService } from 'src/app/Services/auth.service';
   styleUrls: ['./user-dashboard.component.css']
 })
 export class UserDashboardComponent implements OnInit {
-  // @Input() files: File[];
-  // @Input() title: string;
-
-  // multimediaContent: any[] = [];
+  
   fileItems: any[] = [];
   messageItems: any[] = [];
+  newMessageContent: string = '';
 
-  constructor(private service: AuthService) {
-    // this.fetchMultimediaContent();
-  }
+  constructor(private service: AuthService) { }
 
   ngOnInit(): void {
     this.loadUserFiles();
@@ -57,6 +53,24 @@ export class UserDashboardComponent implements OnInit {
         },
         error: (error) => {
           console.error('Error deleting file:', error);
+        }
+      }
+    );
+  }
+
+  postMessage(content: string): void {
+    const message = {
+      content: content,
+      userId: 1,
+    };
+  
+    this.service.sendMessage(message).subscribe(
+      {
+        next: () => {
+          this.loadMessages(); // Reload messages after posting
+        },
+        error: (error) => {
+          console.error('Error posting message:', error);
         }
       }
     );

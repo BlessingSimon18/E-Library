@@ -1,1 +1,12 @@
-<p>messages works!</p>
+<!-- message.component.html -->
+<div>
+    <h2>Messages</h2>
+    <div *ngFor="let messageItem of messageItems">
+      <p>{{ messageItem.content }}</p>
+      <small>Posted by User {{ messageItem.userId }} on {{ messageItem.created_at }}</small>
+    </div>
+  
+    <textarea [(ngModel)]="newMessageContent" placeholder="Type your message..."></textarea>
+    <button (click)="postMessage()">Post Message</button>
+  </div>
+  

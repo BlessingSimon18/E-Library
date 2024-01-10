@@ -14,7 +14,7 @@ import { AuthService } from 'src/app/Services/auth.service';
 export class RolesComponent implements OnInit{
 
   fileItems: FileItem[] = [];
-  // files: any = {};
+  
 
   displayedColumns: string[] = ['icon', 'name', 'type', 'actions'];
   dataSource = new MatTableDataSource<FileItem>(this.fileItems);

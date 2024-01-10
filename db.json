@@ -95,12 +95,18 @@
       "name": "image.jpg",
       "type": "image/jpeg",
       "content": "Base64-encoded image content..."
+    }
+  ],
+  "messages": [
+    {
+      "content": "joy joy joy",
+      "userId": 1,
+      "id": 1
     },
     {
-      "id": 3,
-      "name": "document.pdf",
-      "type": "application/pdf",
-      "content": "Base64-encoded PDF content..."
+      "content": "joy is love\n",
+      "userId": 1,
+      "id": 2
     }
   ]
 }

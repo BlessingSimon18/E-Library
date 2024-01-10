@@ -40,6 +40,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule } from '@angular/material/dialog';
 import {MatIconModule} from '@angular/material/icon';
+import { MessagesComponent } from './messages/messages.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import {MatIconModule} from '@angular/material/icon';
     PicturesComponent,
     AudioComponent,
     PdfComponent,
-    FileContentDialogComponent
+    FileContentDialogComponent,
+    MessagesComponent
   ],
   imports: [
     BrowserModule,

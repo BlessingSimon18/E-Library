@@ -13,6 +13,7 @@ export class AuthService {
 
   apiurl='http://localhost:3000/users';
   fileUrl='http://localhost:3000/files';
+  messageUrl = 'http://localhost:3000/messages';
   // registerationForm: FormGroup;
 
   getFile(){
@@ -46,8 +47,9 @@ export class AuthService {
   uploadFile(file: File): Observable<any> {
     const formData: FormData = new FormData();
     formData.append('file', file, file.name);
+    formData.append('file', file, file.type);
 
-    return this.http.post<any>(`${this.fileUrl}/files`, formData);
+    return this.http.post<any[]>(`${this.fileUrl}/files`, formData);
   }
 
   // getUploadedFiles(): Observable<any[]> {
@@ -66,6 +68,19 @@ export class AuthService {
 
   deleteFile(id: number): Observable<any> {
     const deleteUrl = `${this.fileUrl}/${id}`;
+    return this.http.delete<any>(deleteUrl);
+  }
+
+  getMessages(): Observable<any[]> {
+    return this.http.get<any[]>(this.messageUrl);
+  }
+
+  sendMessage(message: any): Observable<any> {
+    return this.http.post<any[]>(this.messageUrl, message);
+  }
+
+  deleteMessage(id: number): Observable<any> {
+    const deleteUrl = `${this.messageUrl}/${id}`;
     return this.http.delete<any>(deleteUrl);
   }
 }

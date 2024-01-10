@@ -25,6 +25,7 @@ import { AudioComponent } from './file-library/audio/audio.component';
 import { VideoComponent } from './file-library/video/video.component';
 import { PdfComponent } from './file-library/pdf/pdf.component';
 import { PicturesComponent } from './file-library/pictures/pictures.component';
+import { MessagesComponent } from './messages/messages.component';
 
 const routes: Routes = [
   {path:"", component:HomeComponent},
@@ -56,6 +57,7 @@ const routes: Routes = [
   {path:'video', component:VideoComponent},
   {path:'pdf', component:PdfComponent},
   {path:'picture', component:PicturesComponent},
+  {path:'messages', component:MessagesComponent}
 ];
 
 @NgModule({

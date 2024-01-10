@@ -9,21 +9,21 @@
     {{ file.name }}
   </div>
 </div> -->
+<div class="main">
+  <div *ngFor="let fileItem of fileItems">
+    <div>
+      <p id="file-name">{{ fileItem.name }}</p>
+      <ng-container *ngIf="fileItem.type && fileItem.type.startsWith('text/')">
+        <pre id="file-content">{{ fileItem.content }}</pre>
+      </ng-container>
+      <!-- Add other containers for different file types -->
 
-<div>
-  <h2>Available Multimedia Content</h2>
-  <div *ngFor="let content of multimediaContent">
-    <div *ngIf="content.type === 'picture'">
-      <img [src]="content.file" alt="Picture">
+      <button *ngIf="fileItem" (click)="deleteFile(fileItem.id)">Delete</button>
     </div>
-    <div *ngIf="content.type === 'video'">
-      <video [src]="content.file" controls></video>
-    </div>
-    <div *ngIf="content.type === 'audio'">
-      <audio [src]="content.file" controls></audio>
-    </div>
-    <div *ngIf="content.type === 'pdf'">
-      <a [href]="content.file" target="_blank">Download PDF</a>
-    </div>
+  </div>
+
+  <div *ngFor="let messageItem of messageItems">
+    <p>{{ messageItem.content }}</p>
+    <small>Posted by User {{ messageItem.userId }} on {{ messageItem.created_at }}</small>
   </div>
 </div>

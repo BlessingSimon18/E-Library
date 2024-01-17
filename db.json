@@ -95,6 +95,152 @@
       "name": "image.jpg",
       "type": "image/jpeg",
       "content": "Base64-encoded image content..."
+    },
+    {
+      "name": "file1.txt",
+      "type": "text/plain",
+      "content": "This is the content of file1.txt.",
+      "id": 3
+    },
+    {
+      "name": "Giving Thanks-11.jpg",
+      "type": "image/jpeg",
+      "id": 4
+    },
+    {
+      "name": "Giving Thanks-11.jpg",
+      "type": "image/jpeg",
+      "id": 5
+    },
+    {
+      "name": "Giving Thanks-11.jpg",
+      "type": "image/jpeg",
+      "id": 6
+    },
+    {
+      "name": "Giving Thanks-11.jpg",
+      "type": "image/jpeg",
+      "id": 7
+    },
+    {
+      "name": "Giving Thanks-11.jpg",
+      "type": "image/jpeg",
+      "id": 8
+    },
+    {
+      "name": "Giving Thanks-11.jpg",
+      "type": "image/jpeg",
+      "id": 9
+    },
+    {
+      "name": "Giving Thanks-11.jpg",
+      "type": "image/jpeg",
+      "id": 10
+    },
+    {
+      "name": "Giving Thanks-11.jpg",
+      "type": "image/jpeg",
+      "id": 11
+    },
+    {
+      "name": "Giving Thanks-11.jpg",
+      "type": "image/jpeg",
+      "id": 12
+    },
+    {
+      "name": "Giving Thanks-11.jpg",
+      "type": "image/jpeg",
+      "id": 13
+    },
+    {
+      "name": "Giving Thanks-11.jpg",
+      "type": "image/jpeg",
+      "id": 14
+    },
+    {
+      "name": "Giving Thanks-11.jpg",
+      "type": "image/jpeg",
+      "id": 15
+    },
+    {
+      "name": "Giving Thanks-11.jpg",
+      "type": "image/jpeg",
+      "id": 16
+    },
+    {
+      "name": "Giving Thanks-11.jpg",
+      "type": "image/jpeg",
+      "id": 17
+    },
+    {
+      "name": "Giving Thanks-11.jpg",
+      "type": "image/jpeg",
+      "id": 18
+    },
+    {
+      "name": "Giving Thanks-11.jpg",
+      "type": "image/jpeg",
+      "id": 19
+    },
+    {
+      "name": "Giving Thanks-11.jpg",
+      "type": "image/jpeg",
+      "id": 20
+    },
+    {
+      "name": "Giving Thanks-11.jpg",
+      "type": "image/jpeg",
+      "id": 21
+    },
+    {
+      "name": "Giving Thanks-11.jpg",
+      "type": "image/jpeg",
+      "id": 22
+    },
+    {
+      "name": "Giving Thanks-11.jpg",
+      "type": "image/jpeg",
+      "id": 23
+    },
+    {
+      "name": "Giving Thanks-11.jpg",
+      "type": "image/jpeg",
+      "id": 24
+    },
+    {
+      "name": "Giving Thanks-11.jpg",
+      "type": "image/jpeg",
+      "id": 25
+    },
+    {
+      "name": "Giving Thanks-11.jpg",
+      "type": "image/jpeg",
+      "id": 26
+    },
+    {
+      "name": "Giving Thanks-11.jpg",
+      "type": "image/jpeg",
+      "id": 27
+    },
+    {
+      "name": "Giving Thanks-11.jpg",
+      "type": "image/jpeg",
+      "id": 28
+    },
+    {
+      "name": "Giving Thanks-11.jpg",
+      "type": "image/jpeg",
+      "id": 29
+    },
+    {
+      "name": "Giving Thanks-11.jpg",
+      "type": "image/jpeg",
+      "id": 30
+    },
+    {
+      "name": "Giving Thanks-11.jpg",
+      "type": "image/jpeg",
+      "id": 31
     }
   ],
   "messages": [

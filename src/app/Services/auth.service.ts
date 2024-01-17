@@ -1,6 +1,7 @@
+import { DataSource } from '@angular/cdk/collections';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 // import { FormGroup } from '@angular/forms';
 
 
@@ -44,12 +45,17 @@ export class AuthService {
     return sessionStorage.getItem('userrole')!=null?sessionStorage.getItem('userrole')?.toString():'';
   }
 
-  uploadFile(file: File): Observable<any[]> {
-    const formData: FormData = new FormData();
-    formData.append('file', file, file.name);
-    formData.append('file', file, file.type);
-
-    return this.http.post<any[]>(`${this.fileUrl}/files`, formData);
+  uploadFile(file:any, data?:any): Observable<any> {
+    // const formData: FormData = new FormData();
+    // formData.append('file', file, file.name);
+    // formData.append('file', file, file.type);
+    let newFile={
+      name: file.name,
+      content: data,
+      type: file.type,
+      id: 0
+    }
+    return this.http.post<any>(`${this.fileUrl}`, newFile);
   }
 
   // getUploadedFiles(): Observable<any[]> {
@@ -57,7 +63,7 @@ export class AuthService {
   // }
 
   // private fileItems: any[] = [];
-
+ 
   // addFileItems(content: any) {
   //   return this.http.put(this.fileUrl, content);
   // }

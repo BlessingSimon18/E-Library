@@ -33,50 +33,59 @@ export class RolesComponent implements OnInit{
   }
 
   onFileChange(event: any): void {
-    const files: FileList | null = event.target.files;
+    const files:any=event.target.files;
 
     if (!files || files.length === 0) {
       return;
     }
 
+    this.fileItems = []; // Clear the array before adding new files
+
     for (let i = 0; i < files.length; i++) {
       const file = files[i];
-
+      console.log('File type:', file.type);
       
-      this.service.uploadFile(file).subscribe(
-        {
-          next:(response:any)=>{
-            console.log('File uploaded successfully:', response);
-            // const fileItem: FileItem = {
-            //   id: response.id,
-            //   name: file.name,
-            //   type: file.type,
-            //   content: response.content
-            // };
-            
-            // this.fileItems.push(response);
-            // this.saveFilesToLocal();
-            // this.dataSource.data = [...this.fileItems];
-            this.loadFilesFromServer(); // Reload files from the server after upload
-          }, error:(error)=>{
-            console.error('Error uploading file:', error);
-          }
-        }
-      );
+     
 
       if (this.isSupportedFileType(file.type)) {
         const reader = new FileReader();
         reader.onload = (readerEvent) => {
           const result = readerEvent.target?.result;
+          const data =  reader.readAsDataURL(file);
+
           if (result) {
-            this.fileItems.push({
-              name: file.name,
-              content: result as string,
-              type: file.type,
-              id: 0
-            });
+            this.service.uploadFile(file, data).subscribe(
+              
+            (response:any)=>{
+                  console.log('File uploaded successfully:', response);
+                  console.log('File content:', response.content );
+
+                  const newFileItem: FileItem = {
+                    id: response.id,  // Adjust the property names accordingly
+                    name: response.name,
+                    content: response.content,  // Ensure that the content property is available in the server response
+                    type: response.type  
+                  };
+  
+                  this.fileItems.push(newFileItem);
+                  this.dataSource.data = [...this.fileItems]; // Update table data
+                  console.log(this.dataSource.data);
+                  this.loadFilesFromServer(); // Reload files from the server after upload
+                }, (err)=> {
+                  console.log(err)
+                }
+              
+            );
+            // this.fileItems.push({
+            //   name: file.name as any,
+            //   content: result as any,
+            //   type: file.type,
+            //   id: 0
+            // });
             
-            this.dataSource.data =[...this.fileItems]; // Update table data
+            // this.dataSource.data =[...this.fileItems]; // Update table data
+            // console.log(this.dataSource.data);
+            
           } else {
             alert('Unable to read file content.');
           }
@@ -120,6 +129,13 @@ export class RolesComponent implements OnInit{
   // }
 
   private loadFilesFromServer(): void {
+    // Check local storage for saved files
+    const localFiles = JSON.parse(localStorage.getItem('File') || '[]');
+
+    // Update the fileItems array and the data source
+    this.fileItems = [...localFiles];
+    this.dataSource.data = [...this.fileItems];
+    
     this.service.getFiles().subscribe(
       {
         next:(files: FileItem[]) => {
@@ -139,6 +155,8 @@ export class RolesComponent implements OnInit{
   }
 
   openFileContentDialog(fileItem: FileItem): void {
+    console.log(fileItem.content);
+    
     const dialogRef = this.dialog.open(FileContentDialogComponent, {
       data: { content: fileItem.content, fileType: fileItem.type }
     });

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, DomSanitizer } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -90,7 +90,8 @@ import { MessagesComponent } from './messages/messages.component';
   ],
   // schemas:[ CUSTOM_ELEMENTS_SCHEMA ],
   providers: [
-    UserServiceService
+    UserServiceService,
+    { provide: DomSanitizer, useValue: {} }
   ],
   bootstrap: [AppComponent]
 })

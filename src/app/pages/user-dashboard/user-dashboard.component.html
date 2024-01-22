@@ -9,30 +9,55 @@
     {{ file.name }}
   </div>
 </div> -->
-<div class="main">
-  <div *ngFor="let fileItem of fileItems">
-    <div>
-      <p id="file-name">{{ fileItem.name }}</p>
-      <ng-container *ngIf="fileItem.type && fileItem.type.startsWith('text/')">
-        <pre id="file-content">{{ fileItem.content }}</pre>
-      </ng-container>
-      <ng-container *ngIf="fileItem.type && fileItem.type.startsWith('image/')">
-        <!-- <pre id="file-content">{{ fileItem.content }}</pre> -->
-      </ng-container>
-      <ng-container *ngIf="fileItem.type && fileItem.type.startsWith('audio/')">
-        <!-- <pre id="file-content">{{ fileItem.content }}</pre> -->
-      </ng-container>
-      <!-- Add other containers for different file types -->
+<!-- user-access.component.html -->
 
-      <button mat-raised-button color="warn" *ngIf="fileItem" (click)="deleteFile(fileItem.id)">Delete</button>
-      <button mat-fab color="primary" (click)="openFileContentDialog(fileItem)">
-        <mat-icon>visibility</mat-icon>
-      </button>
-      <!-- <button mat-icon-button (click)="deleteFile(element.id)">
-        <mat-icon>delete</mat-icon>
-      </button> -->
-    </div>
-  </div>
+<div class="main">
+  <table mat-table [dataSource]="fileItems" class="mat-elevation-z8">
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let fileItem">{{ fileItem.name }}</td>
+    </ng-container>
+
+    <!-- Content Column -->
+    <ng-container matColumnDef="content">
+      <th mat-header-cell *matHeaderCellDef>Content</th>
+      <td mat-cell *matCellDef="let fileItem">
+        <ng-container *ngIf="fileItem.type && fileItem.type.startsWith('text/')">
+          <pre id="file-content">{{ fileItem.content }}</pre>
+        </ng-container>
+        <ng-container *ngIf="fileItem.type && fileItem.type.startsWith('image/')">
+          <!-- Add specific content for image type -->
+          <img [src]="fileItem.content" alt="{{ fileItem.name }}" style="width: 100px;" />
+        </ng-container>
+        <ng-container *ngIf="fileItem.type && fileItem.type.startsWith('audio/')">
+          <!-- Add specific content for audio type -->
+          <audio controls>
+            <source [src]="fileItem.content" type="{{ fileItem.type }}">
+            Your browser does not support the audio tag.
+          </audio>
+        </ng-container>
+        <!-- Add other containers for different file types -->
+      </td>
+    </ng-container>
+
+    <!-- Action Column -->
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let fileItem">
+        <button mat-raised-button color="warn" (click)="deleteFile(fileItem.id)">Delete</button>
+        <button mat-fab color="primary" (click)="openFileContentDialog(fileItem)">
+          <mat-icon>visibility</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="['name', 'content', 'actions']"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['name', 'content', 'actions']"></tr>
+  </table>
+
+
 
     <!-- Display messages -->
   <div *ngFor="let messageItem of messageItems">

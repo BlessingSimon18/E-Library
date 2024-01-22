@@ -5,6 +5,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { FileItem } from 'src/app/file-item.model';
 import { FileContentDialogComponent } from 'src/app/file-content-dialog/file-content-dialog.component';
 import { AuthService } from 'src/app/Services/auth.service';
+import { MaterialModule } from 'src/app/Modules/material.module';
+
 
 @Component({
   selector: 'app-roles',

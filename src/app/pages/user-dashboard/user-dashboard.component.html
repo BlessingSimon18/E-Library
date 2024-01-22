@@ -16,9 +16,21 @@
       <ng-container *ngIf="fileItem.type && fileItem.type.startsWith('text/')">
         <pre id="file-content">{{ fileItem.content }}</pre>
       </ng-container>
+      <ng-container *ngIf="fileItem.type && fileItem.type.startsWith('image/')">
+        <!-- <pre id="file-content">{{ fileItem.content }}</pre> -->
+      </ng-container>
+      <ng-container *ngIf="fileItem.type && fileItem.type.startsWith('audio/')">
+        <!-- <pre id="file-content">{{ fileItem.content }}</pre> -->
+      </ng-container>
       <!-- Add other containers for different file types -->
 
-      <button *ngIf="fileItem" (click)="deleteFile(fileItem.id)">Delete</button>
+      <button mat-button *ngIf="fileItem" (click)="deleteFile(fileItem.id)">Delete</button>
+      <button mat-icon-button (click)="openFileContentDialog(fileItem)">
+        <mat-icon>visibility</mat-icon>
+      </button>
+      <!-- <button mat-icon-button (click)="deleteFile(element.id)">
+        <mat-icon>delete</mat-icon>
+      </button> -->
     </div>
   </div>
 

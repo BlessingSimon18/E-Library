@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { MaterialModule } from 'src/app/Modules/material.module';
 import { AuthService } from 'src/app/Services/auth.service';
+import { FileContentDialogComponent } from 'src/app/file-content-dialog/file-content-dialog.component';
+
 
 @Component({
   selector: 'app-user-dashboard',
@@ -12,13 +16,16 @@ export class UserDashboardComponent implements OnInit {
   messageItems: any[] = [];
   newMessageContent: string = '';
 
-  constructor(private service: AuthService) { }
-
+  constructor(private service: AuthService, private dialog: MatDialog) { 
+    
+  }
   ngOnInit(): void {
     this.loadUserFiles();
     this.loadMessages();
   }
 
+ 
+    
   loadUserFiles(): void {
     this.service.getFiles().subscribe(
       {
@@ -31,6 +38,8 @@ export class UserDashboardComponent implements OnInit {
       }
     );
   }
+
+  
 
   loadMessages(): void {
     this.service.getMessages().subscribe(
@@ -61,7 +70,7 @@ export class UserDashboardComponent implements OnInit {
   postMessage(content: string): void {
     const message = {
       content: content,
-      userId: 1,
+      userId: 'librarian',
     };
   
     this.service.sendMessage(message).subscribe(
@@ -74,6 +83,17 @@ export class UserDashboardComponent implements OnInit {
         }
       }
     );
+  }
+
+  openFileContentDialog(fileItem: any): void {
+    const dialogRef = this.dialog.open(FileContentDialogComponent, {
+      data: { content: fileItem.content, fileType: fileItem.type }
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('Dialog closed with result:', result);
+      // Handle any actions after the dialog is closed
+    });
   }
 
   // fetchMultimediaContent() {

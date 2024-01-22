@@ -86,6 +86,7 @@ import { MessagesComponent } from './messages/messages.component';
     MatIconModule,
     HttpClientModule,
     CommonModule,
+    
     ToastrModule.forRoot()
   ],
   // schemas:[ CUSTOM_ELEMENTS_SCHEMA ],

@@ -2,6 +2,8 @@ import { DataSource } from '@angular/cdk/collections';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
+import { FileItem } from '../file-item.model';
+import { ReadVarExpr } from '@angular/compiler';
 // import { FormGroup } from '@angular/forms';
 
 
@@ -45,17 +47,17 @@ export class AuthService {
     return sessionStorage.getItem('userrole')!=null?sessionStorage.getItem('userrole')?.toString():'';
   }
 
-  uploadFile(file:any, data?:any): Observable<any> {
+  uploadFile(file:any): Observable<any> {
     // const formData: FormData = new FormData();
     // formData.append('file', file, file.name);
     // formData.append('file', file, file.type);
-    let newFile={
-      name: file.name,
-      content: data,
-      type: file.type,
-      id: 0
-    }
-    return this.http.post<any>(`${this.fileUrl}`, newFile);
+    // const newFile={
+    //   name: file.name,
+    //   content: file.content as string,
+    //   type: file.type,
+    //   id: 0
+    // }
+    return this.http.post<any>(this.fileUrl, file);
   }
 
   // getUploadedFiles(): Observable<any[]> {
@@ -71,6 +73,11 @@ export class AuthService {
   getFiles(): Observable<any[]> {
     return this.http.get<any[]>(this.fileUrl);
   }
+  // getFileContent(fileId: number): Observable<any> {
+  //   return this.http.get(`${this.fileUrl}/file-content/${fileId}`);
+  // }
+
+  
 
   deleteFile(id: number): Observable<any> {
     const deleteUrl = `${this.fileUrl}/${id}`;

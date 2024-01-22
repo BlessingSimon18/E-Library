@@ -30,80 +30,57 @@ export class RolesComponent implements OnInit{
     this.dataSource.paginator = this.paginator;
 
     this.loadFilesFromServer();
+    
   }
 
   onFileChange(event: any): void {
-    const files:any=event.target.files;
+    // const files:any=event.target.files;
+    const files: FileList | null = event.target.files;
+   
+    if (files && files.length !== 0) {
+ 
 
-    if (!files || files.length === 0) {
-      return;
+      this.fileItems = []; // Clear the array before adding new files
+      const file = files[0]
+          const reader = new FileReader();
+          
+          reader.onloadend = (readerEvent) => {
+            const data =  reader.result;
+            if (data) {
+               const payload = {
+                name: file.name as any,
+                content: data,
+                type: file.type,
+               }
+              this.service.uploadFile(payload).subscribe(()=>
+                
+               {
+                 this.loadFilesFromServer() // Reload files from the server after upload
+               },
+                 (err)=> {
+                    console.log(err)
+                  }
+              )
+              // this.fileItems.push({
+              //   name: file.name as any,
+              //   content: result as any,
+              //   type: file.type,
+              //   id: 0
+              // });
+              
+              // this.dataSource.data =[...this.fileItems]; // Update table data
+              // console.log(this.dataSource.data);
+              
+            } else {
+              alert('Unable to read file content.');
+            }
+          };
+          reader.readAsDataURL(file)
     }
 
-    this.fileItems = []; // Clear the array before adding new files
 
-    for (let i = 0; i < files.length; i++) {
-      const file = files[i];
-      console.log('File type:', file.type);
-      
-     
 
-      if (this.isSupportedFileType(file.type)) {
-        const reader = new FileReader();
-        reader.onload = (readerEvent) => {
-          const result = readerEvent.target?.result;
-          const data =  reader.readAsDataURL(file);
 
-          if (result) {
-            this.service.uploadFile(file, data).subscribe(
-              
-            (response:any)=>{
-                  console.log('File uploaded successfully:', response);
-                  console.log('File content:', response.content );
-
-                  const newFileItem: FileItem = {
-                    id: response.id,  // Adjust the property names accordingly
-                    name: response.name,
-                    content: response.content,  // Ensure that the content property is available in the server response
-                    type: response.type  
-                  };
-  
-                  this.fileItems.push(newFileItem);
-                  this.dataSource.data = [...this.fileItems]; // Update table data
-                  console.log(this.dataSource.data);
-                  this.loadFilesFromServer(); // Reload files from the server after upload
-                }, (err)=> {
-                  console.log(err)
-                }
-              
-            );
-            // this.fileItems.push({
-            //   name: file.name as any,
-            //   content: result as any,
-            //   type: file.type,
-            //   id: 0
-            // });
-            
-            // this.dataSource.data =[...this.fileItems]; // Update table data
-            // console.log(this.dataSource.data);
-            
-          } else {
-            alert('Unable to read file content.');
-          }
-        };
-
-        if (file.type.startsWith("text/") || file.type.startsWith("image/") || file.type.startsWith("video/") || file.type === 'application/pdf') {
-          reader.readAsDataURL(file);
-        } else if (file.type.startsWith("audio/")) {
-          reader.readAsDataURL(file);
-          // Handle audio files
-          // You can implement audio-specific handling here
-        } else {
-          alert(`Unsupported file type: ${file.type}`);
-        }
-      } else {
-        alert(`Unsupported file type: ${file.type}`);
-      }
-    }
   }
 
   deleteFile(id: number): void {
@@ -141,7 +118,11 @@ export class RolesComponent implements OnInit{
         next:(files: FileItem[]) => {
           this.fileItems = files;
           this.dataSource.data = [...this.fileItems];
-          this.saveFilesToLocal();
+          // this.saveFilesToLocal();
+          console.log('Files loaded from the server:', this.fileItems);
+        
+         // Log content of each file for debugging
+        this.fileItems.forEach(file => console.log('File content:', file.content));
         },
         error:(error) => {
           console.error('Error fetching files:', error);
@@ -157,15 +138,21 @@ export class RolesComponent implements OnInit{
   openFileContentDialog(fileItem: FileItem): void {
     console.log(fileItem.content);
     
+   
     const dialogRef = this.dialog.open(FileContentDialogComponent, {
-      data: { content: fileItem.content, fileType: fileItem.type }
+      data: {content: fileItem.content, fileType: fileItem.type }
     });
   
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       console.log('Dialog closed with result:', result);
       // Handle any actions after the dialog is closed
     });  
+  
   }
+
+ 
+
+
 
   private isSupportedFileType(fileType: string): boolean {
     return (

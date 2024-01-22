@@ -24,8 +24,8 @@
       </ng-container>
       <!-- Add other containers for different file types -->
 
-      <button mat-button *ngIf="fileItem" (click)="deleteFile(fileItem.id)">Delete</button>
-      <button mat-icon-button (click)="openFileContentDialog(fileItem)">
+      <button mat-raised-button color="warn" *ngIf="fileItem" (click)="deleteFile(fileItem.id)">Delete</button>
+      <button mat-fab color="primary" (click)="openFileContentDialog(fileItem)">
         <mat-icon>visibility</mat-icon>
       </button>
       <!-- <button mat-icon-button (click)="deleteFile(element.id)">
@@ -44,7 +44,7 @@
   <div>
     <label for="message-input">Write a message:</label>
     <textarea id="message-input" [(ngModel)]="newMessageContent" placeholder="Type your message..."></textarea>
-    <button (click)="postMessage(newMessageContent)">Post Message</button>
+    <button mat-raised-button color="primary" (click)="postMessage(newMessageContent)">Post Message</button>
   </div>
   
 </div>

@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import {Dialog, DialogModule, DialogRef} from '@angular/cdk/dialog';
 
 
 @Component({
@@ -9,33 +9,6 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
   styleUrls: ['./file-content-dialog.component.css']
 })
 export class FileContentDialogComponent {
-//   sanitizedContentUrl: SafeResourceUrl;
-
-//   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private sanitizer: DomSanitizer) {
-//     console.log('Dialog data:', data);
-
-//     this.sanitizedContentUrl = this.getSanitizedContentUrl(data.content, data.fileType);
-    
-//    }
-   
-   
-
-//    getSanitizedContentUrl(content: string, fileType: string): SafeResourceUrl {
-//     switch (fileType) {
-//       case 'text/plain':
-//           return this.sanitizer.bypassSecurityTrustHtml(content);
-//       case 'image/jpeg':
-//       case 'image/png':
-//           return this.sanitizer.bypassSecurityTrustResourceUrl(content);
-//       case 'video/mp4': // Add more video types if needed
-//           return this.sanitizer.bypassSecurityTrustResourceUrl(content);
-//       case 'audio/mpeg': // Add more audio types if needed
-//           return this.sanitizer.bypassSecurityTrustResourceUrl(content);
-//       // Add cases for other file types
-//       default:
-//           return this.sanitizer.bypassSecurityTrustResourceUrl(content);
-//   }
-// }
 
 
 isImage: boolean = false;
@@ -44,7 +17,7 @@ isText: boolean = false;
 isAudio: boolean = false;
 isVideo: boolean = false;
 
-constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
+constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: DialogRef) {
   this.detectFileType();
   console.log('Dialog data:', data);
 }

@@ -41,6 +41,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule } from '@angular/material/dialog';
 import {MatIconModule} from '@angular/material/icon';
 import { MessagesComponent } from './messages/messages.component';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { CancelSelectionComponent } from './cancel-selection/cancel-selection.component';
 
 @NgModule({
   declarations: [
@@ -71,7 +73,8 @@ import { MessagesComponent } from './messages/messages.component';
     AudioComponent,
     PdfComponent,
     FileContentDialogComponent,
-    MessagesComponent
+    MessagesComponent,
+    CancelSelectionComponent
   ],
   imports: [
     BrowserModule,
@@ -86,7 +89,7 @@ import { MessagesComponent } from './messages/messages.component';
     MatIconModule,
     HttpClientModule,
     CommonModule,
-    
+    MatProgressBarModule,
     ToastrModule.forRoot()
   ],
   // schemas:[ CUSTOM_ELEMENTS_SCHEMA ],

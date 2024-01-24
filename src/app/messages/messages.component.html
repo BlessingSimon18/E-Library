@@ -8,5 +8,15 @@
   
     <textarea [(ngModel)]="newMessageContent" placeholder="Type your message..."></textarea>
     <button (click)="postMessage()">Post Message</button>
+
+    <mat-form-field >
+      <mat-label>Autosize textarea</mat-label>
+      <textarea matInput
+                cdkTextareaAutosize
+                #autosize="cdkTextareaAutosize"
+                cdkAutosizeMinRows="1"
+                cdkAutosizeMaxRows="5"></textarea>
+    </mat-form-field>
+    <button mat-raised-button (click)="postMessage()">Post Message</button>
   </div>
   

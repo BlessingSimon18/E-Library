@@ -6,6 +6,8 @@ import { FileItem } from 'src/app/file-item.model';
 import { FileContentDialogComponent } from 'src/app/file-content-dialog/file-content-dialog.component';
 import { AuthService } from 'src/app/Services/auth.service';
 import { MaterialModule } from 'src/app/Modules/material.module';
+import {Dialog, DialogModule, DialogRef} from '@angular/cdk/dialog';
+import { CancelSelectionComponent } from 'src/app/cancel-selection/cancel-selection.component';
 
 
 @Component({
@@ -16,7 +18,12 @@ import { MaterialModule } from 'src/app/Modules/material.module';
 export class RolesComponent implements OnInit{
 
   fileItems: FileItem[] = [];
-  
+  selectedFiles: FileItem[] = [];
+  uploadInProgress: boolean = false;
+  uploadProgress: number = 0;
+  uploadCompleted: boolean = false;
+  uploadSuccess: boolean = false;
+
 
   displayedColumns: string[] = ['icon', 'name', 'type', 'actions'];
   dataSource = new MatTableDataSource<FileItem>(this.fileItems);
@@ -41,9 +48,9 @@ export class RolesComponent implements OnInit{
    
     if (files && files.length !== 0) {
  
-
+      this.selectedFiles = [];
       this.fileItems = []; // Clear the array before adding new files
-      const file = files[0]
+      const file = files[0];
           const reader = new FileReader();
           
           reader.onloadend = (readerEvent) => {
@@ -53,37 +60,92 @@ export class RolesComponent implements OnInit{
                 name: file.name as any,
                 content: data,
                 type: file.type,
-               }
-              this.service.uploadFile(payload).subscribe(()=>
+               };
+
+               this.selectedFiles.push(payload);
+              } else {
+                alert('Unable to read file content.');
+              }
+
+              // this.service.uploadFile(payload).subscribe(()=>
                 
-               {
-                 this.loadFilesFromServer() // Reload files from the server after upload
-               },
-                 (err)=> {
-                    console.log(err)
-                  }
-              )
-              // this.fileItems.push({
-              //   name: file.name as any,
-              //   content: result as any,
-              //   type: file.type,
-              //   id: 0
-              // });
+              //  {
+              //    this.loadFilesFromServer() // Reload files from the server after upload
+              //  },
+              //    (err)=> {
+              //       console.log(err)
+              //     }
+              // )
               
-              // this.dataSource.data =[...this.fileItems]; // Update table data
-              // console.log(this.dataSource.data);
               
-            } else {
-              alert('Unable to read file content.');
-            }
+            // } else {
+            //   alert('Unable to read file content.');
+            // }
           };
-          reader.readAsDataURL(file)
+          reader.readAsDataURL(file);
     }
 
 
 
 
   }
+
+  uploadFile(): void {
+    if (this.selectedFiles.length === 0) {
+      return;
+    }
+    // Display file details before upload
+    console.log('Selected File Details:', this.selectedFiles[0]);
+
+
+    this.uploadInProgress = true;
+    this.uploadProgress = 0;
+    this.uploadCompleted = false;
+    this.uploadSuccess = false;
+
+    // Assuming you have an upload service, replace the following with your actual upload logic
+    this.service.uploadFile(this.selectedFiles[0]).subscribe(
+      {
+      next: (response) => {
+        this.uploadProgress = 100;
+        this.uploadSuccess = true;
+      },
+      error: (error) => {
+        console.error('Error uploading file:', error);
+        this.uploadSuccess = false;
+      },
+      complete: () => {
+        this.uploadInProgress = false;
+        this.uploadCompleted = true;
+        this.loadFilesFromServer(); // Reload files from the server after upload
+     
+        // Clear the selectedFiles array after a successful upload
+        this.selectedFiles = [];
+      }
+    }
+    );
+  }
+
+  cancelSelection(): void {
+    const dialogRef = this.dialog.open(CancelSelectionComponent);
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        // User confirmed canceling the selection
+        this.selectedFiles = [];
+        this.uploadInProgress = false;
+        this.uploadProgress = 0;
+        this.uploadCompleted = false;
+        this.uploadSuccess = false;
+      }
+    });
+  }
+
+  retryUpload(): void {
+    this.uploadFile(); // Retry the upload
+  }
+
+
 
   deleteFile(id: number): void {
     this.service.deleteFile(id).subscribe(

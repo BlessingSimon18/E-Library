@@ -1,13 +1,61 @@
-.main{
+body{
+  margin: 0;
+  padding: 0;
+  /* overflow: hidden; */
   max-width: 100%;
+}
+
+.main{
+  width: 100%;
   background-image: linear-gradient(rgba(72,0,72,0.6), rgba(192,72,72,0.8)),
   linear-gradient(rgba(72,0,72,0.6), rgba(192,72,72,0.8));
   background-position: center;
   background-blend-mode: multiply;
-  height: 100vh;
+  /* height: 100vh; */
   color:aliceblue;
+
 }
 
 div {
     margin-bottom: 10px;
+}
+
+table {
+  width: 80%;
+}
+
+/* .text-content-container {
+  width: 80%;
+  margin: 0 auto; 
+} */
+
+/* Add this to your component's CSS file or style section */
+/* Add this to your component's CSS file or style section */
+.celebration-message {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  animation: celebrate 2s ease infinite;
+}
+
+.welcome {
+  color: #3498db; 
+}
+
+.username {
+  color: #e74c3c; 
+}
+
+.exclamation {
+  color: #f39c12; 
+}
+
+@keyframes celebrate {
+  0%, 100% {
+    transform: scale(1);
   }
+  50% {
+    transform: scale(1.2);
+  }
+}
+

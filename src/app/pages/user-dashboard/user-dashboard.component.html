@@ -10,9 +10,35 @@
   </div>
 </div> -->
 <!-- user-access.component.html -->
+<body>
+  
 
 <div class="main">
-  <table mat-table [dataSource]="fileItems" class="mat-elevation-z8">
+  <div class="celebration-message">
+    <span class="welcome">Welcome</span>
+    <span class="username">{{ getWelcomeMessage() }}</span>
+    <span class="exclamation">!</span>
+  </div>
+  
+
+  <h2>Available Multimedia Content</h2>
+
+  <div>
+    <button mat-raised-button (click)="filterFiles('audio')">Audio</button>
+    <button mat-raised-button (click)="filterFiles('image')">Image</button>
+    <button mat-raised-button (click)="filterFiles('video')">Video</button>
+    <button mat-raised-button (click)="filterFiles('text')">Text</button>
+    <button mat-raised-button (click)="filterFiles('pdf')">PDF</button>
+    <button mat-raised-button (click)="toggleMessages()">Messages</button>
+  </div>
+
+  <div>
+    <mat-badge [matBadge]="newFileTypeCount" matBadgeColor="warn">
+      New file type added!
+    </mat-badge>
+  </div>
+
+  <table *ngIf="filterFiles || showMessages" mat-table [dataSource]="filteredFileItems || messageItems" class="mat-elevation-z8">
 
     <!-- Name Column -->
     <ng-container matColumnDef="name">
@@ -24,8 +50,10 @@
     <ng-container matColumnDef="content">
       <th mat-header-cell *matHeaderCellDef>Content</th>
       <td mat-cell *matCellDef="let fileItem">
-        <ng-container *ngIf="fileItem.type && fileItem.type.startsWith('text/')">
+        <ng-container *ngIf="fileItem.type && fileItem.type.startsWith('text/') && fileItem.length===0">
+          <div class="text-content-container">
           <pre id="file-content">{{ fileItem.content }}</pre>
+          </div>
         </ng-container>
         <ng-container *ngIf="fileItem.type && fileItem.type.startsWith('image/')">
           <!-- Add specific content for image type -->
@@ -38,7 +66,8 @@
             Your browser does not support the audio tag.
           </audio>
         </ng-container>
-        <!-- Add other containers for different file types -->
+        
+        
       </td>
     </ng-container>
 
@@ -46,10 +75,10 @@
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef>Actions</th>
       <td mat-cell *matCellDef="let fileItem">
-        <button mat-raised-button color="warn" (click)="deleteFile(fileItem.id)">Delete</button>
-        <button mat-fab color="primary" (click)="openFileContentDialog(fileItem)">
-          <mat-icon>visibility</mat-icon>
-        </button>
+         
+        <mat-icon (click)="deleteFile(fileItem.id)">delete</mat-icon>
+        <mat-icon (click)="openFileContentDialog(fileItem)">visibility</mat-icon>
+        
       </td>
     </ng-container>
 
@@ -60,16 +89,48 @@
 
 
     <!-- Display messages -->
-  <div *ngFor="let messageItem of messageItems">
-    <p>{{ messageItem.content }}</p>
-    <small>Posted by User {{ messageItem.userId }} on {{ messageItem.created_at }}</small>
-  </div>
+    <div *ngIf="showMessages && toggleMessages">
+      <div *ngFor="let messageItem of messageItems">
+        <p>{{ messageItem.content }}</p>
+        <small>Posted by User {{ messageItem.userId }} on {{ messageItem.created_at }}</small>
+      </div>
+    </div>
+  
+    <div *ngIf="showMessages">
+      <table mat-table [dataSource]="messageItems">
+        <!-- Define columns for the table -->
+        <ng-container matColumnDef="Name">
+          <th mat-header-cell *matHeaderCellDef> Name </th>
+          <td mat-cell *matCellDef="let messageItem"> {{ messageItem.userId }} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="content">
+          <th mat-header-cell *matHeaderCellDef> Content </th>
+          <td mat-cell *matCellDef="let messageItem"> {{ messageItem.content.slice(0, 50) }}... </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef> Actions </th>
+          <td mat-cell *matCellDef="let fileItem">
+            <!-- Add any actions you need, for example, a delete icon -->
+            <button mat-icon-button (click)="deleteFile(fileItem.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+    
+        <!-- Set the column definitions in the mat-header-row and mat-row elements -->
+        <mat-header-row *matHeaderRowDef="['senderName', 'preview', 'actions']"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: ['senderName', 'preview', 'actions'];"></mat-row>
+      </table>
+    </div>
 
    <!-- Post new message -->
-  <div>
+  <!-- <div>
     <label for="message-input">Write a message:</label>
     <textarea id="message-input" [(ngModel)]="newMessageContent" placeholder="Type your message..."></textarea>
     <button mat-raised-button color="primary" (click)="postMessage(newMessageContent)">Post Message</button>
-  </div>
+  </div> -->
   
 </div>
+</body>

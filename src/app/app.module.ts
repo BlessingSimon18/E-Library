@@ -43,6 +43,7 @@ import {MatIconModule} from '@angular/material/icon';
 import { MessagesComponent } from './messages/messages.component';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { CancelSelectionComponent } from './cancel-selection/cancel-selection.component';
+import { MatBadgeModule } from '@angular/material/badge';
 
 @NgModule({
   declarations: [
@@ -90,6 +91,7 @@ import { CancelSelectionComponent } from './cancel-selection/cancel-selection.co
     HttpClientModule,
     CommonModule,
     MatProgressBarModule,
+    MatBadgeModule,
     ToastrModule.forRoot()
   ],
   // schemas:[ CUSTOM_ELEMENTS_SCHEMA ],

@@ -44,7 +44,7 @@
 
 
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, Validators } from '@angular/forms';
 import { passwordMatchValidator } from '../password-match.directives';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/Services/auth.service';
@@ -141,7 +141,16 @@ export class UserLoginComponent implements OnInit{
     const isUserExist = this.signupUsers.find(m => m.userName == this.loginObj.userName
       && m.password == this.loginObj.password);
     if(isUserExist != undefined){
-      if(this.loginObj.isactive){
+      if(this.loginObj.isactive || this.loginObj.userName != undefined && this.loginObj.password != undefined){
+        // const userId = isUserExist.id;
+
+        // Call the AuthService to activate the user
+        // this.service.activateUser(userId, true)
+        //   .subscribe(res => {
+        //     // Handle the activation response if needed
+        //     console.log('User activated successfully:', res);
+        //   });
+
         sessionStorage.setItem('username', this.loginObj.userName);
         sessionStorage.setItem('userrole', this.loginObj.role);
 
@@ -149,6 +158,7 @@ export class UserLoginComponent implements OnInit{
         this.router.navigate(['userLayout'])
       }else{
         alert('Inactive User, Please contact admin');
+        
       }
       
     }else {

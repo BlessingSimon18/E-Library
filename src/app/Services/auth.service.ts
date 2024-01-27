@@ -43,6 +43,13 @@ export class AuthService {
   isLoggedIn(){
     return sessionStorage.getItem('username')!=null;
   }
+
+  // Method to update user activation status
+  activateUser(userId: number, isActive: boolean): Observable<any> {
+    const activationData = { isactive: isActive };
+    return this.http.put(`${this.apiurl}/${userId}`, activationData);
+  }
+
   getUserrole(){
     return sessionStorage.getItem('userrole')!=null?sessionStorage.getItem('userrole')?.toString():'';
   }
